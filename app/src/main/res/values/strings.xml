@@ -1,3 +1,32 @@
 <resources>
     <string name="app_name">DanGongCha</string>
+
+    <string name="select_route">請選擇路線</string>
+
+    <string name="number_0">0</string>
+    <string name="number_1">1</string>
+    <string name="number_2">2</string>
+    <string name="number_3">3</string>
+    <string name="number_4">4</string>
+    <string name="number_5">5</string>
+    <string name="number_6">6</string>
+    <string name="number_7">7</string>
+    <string name="number_8">8</string>
+    <string name="number_9">9</string>
+
+    <string name="red">紅</string>
+    <string name="blue">藍</string>
+    <string name="green">綠</string>
+    <string name="brown">棕</string>
+    <string name="orange">橘</string>
+    <string name="yellow">黃</string>
+    
+    <string name="confirm">確定</string>
+    <string name="delete">刪除</string>
+    
+    <string name="city">縣市</string>
+    
+    <string name="trunk">幹線</string>
+
+
 </resources>
