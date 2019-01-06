@@ -46,6 +46,25 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
+                //確認按鈕
+                if(v.getId() == R.id.btn_confirm) {
+
+                }
+
+                //刪除按鈕
+                if(v.getId() == R.id.btn_delete) {
+                    setTitle("DanGongCha");
+                }
+
+                //縣市按鈕
+                if(v.getId() == R.id.btn_confirm) {
+
+                }
+
+                //幹線按鈕
+                if(v.getId() == R.id.btn_confirm) {
+
+                }
             }
         };
 
@@ -64,6 +83,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_brown).setOnClickListener(onClickListener);
         findViewById(R.id.btn_orange).setOnClickListener(onClickListener);
         findViewById(R.id.btn_yellow).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_confirm).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_delete).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_city).setOnClickListener(onClickListener);
+        findViewById(R.id.btn_trunk).setOnClickListener(onClickListener);
 
     }
 }
