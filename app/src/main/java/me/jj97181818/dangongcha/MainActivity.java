@@ -1,5 +1,6 @@
 package me.jj97181818.dangongcha;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -57,12 +58,12 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 //縣市按鈕
-                if(v.getId() == R.id.btn_confirm) {
-
+                if(v.getId() == R.id.btn_city) {
+                    gotoCityActivity();
                 }
 
                 //幹線按鈕
-                if(v.getId() == R.id.btn_confirm) {
+                if(v.getId() == R.id.btn_trunk) {
 
                 }
             }
@@ -88,5 +89,10 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_city).setOnClickListener(onClickListener);
         findViewById(R.id.btn_trunk).setOnClickListener(onClickListener);
 
+    }
+
+    public void gotoCityActivity() {
+        Intent it = new Intent(this, CityActivity.class);
+        startActivity(it);
     }
 }

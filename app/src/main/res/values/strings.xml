@@ -51,5 +51,6 @@
     <string name="PenghuCounty">澎湖縣</string>
     <string name="KinmenCounty">金門縣</string>
     <string name="LienchiangCounty">連江縣</string>
+    <string name="intercity">公路客運</string>
 
 </resources>

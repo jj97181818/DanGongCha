@@ -23,15 +23,15 @@
         android:id="@+id/linearLayout3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="50dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="60dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/txv_city">
+
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -44,6 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Keelung"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="62dp"
                 tools:layout_editor_absoluteY="97dp" />
 
@@ -53,6 +54,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/YunlinCounty"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="76dp"
                 tools:layout_editor_absoluteY="264dp" />
         </LinearLayout>
@@ -68,6 +70,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/NewTaipei"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="62dp"
                 tools:layout_editor_absoluteY="209dp" />
 
@@ -77,6 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="@string/Chiayi"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="76dp"
                 tools:layout_editor_absoluteY="144dp" />
         </LinearLayout>
@@ -91,14 +95,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Taipei" />
+                android:text="@string/Taipei"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/ChiayiCounty" />
+                android:text="@string/ChiayiCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,14 +117,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/YilanCounty" />
+                android:text="@string/YilanCounty"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox7"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Tainan" />
+                android:text="@string/Tainan"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -131,14 +139,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Taoyuan" />
+                android:text="@string/Taoyuan"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Kaohsiung" />
+                android:text="@string/Kaohsiung"
+                android:textAlignment="center" />
 
         </LinearLayout>
 
@@ -154,14 +164,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Hsinchu" />
+                android:text="@string/Hsinchu"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/PingtungCounty" />
+                android:text="@string/PingtungCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -176,14 +188,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/HsinchuCounty" />
+                android:text="@string/HsinchuCounty"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/TaitungCounty" />
+                android:text="@string/TaitungCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -198,14 +212,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/MiaoliCounty" />
+                android:text="@string/MiaoliCounty"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/HualienCounty" />
+                android:text="@string/HualienCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -218,14 +234,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/Taichung" />
+                android:text="@string/Taichung"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox18"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/PenghuCounty" />
+                android:text="@string/PenghuCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -238,15 +256,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/ChanghuaCounty" />
+                android:text="@string/ChanghuaCounty"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox20"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox"
-                tools:text="@string/KinmenCounty" />
+                android:text="@string/KinmenCounty"
+                android:textAlignment="center" />
         </LinearLayout>
 
         <LinearLayout
@@ -259,17 +278,50 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/NantouCounty" />
+                android:text="@string/NantouCounty"
+                android:textAlignment="center" />
 
             <CheckBox
                 android:id="@+id/checkBox22"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="CheckBox"
-                tools:text="@string/LienchiangCounty" />
+                android:text="@string/LienchiangCounty"
+                android:textAlignment="center" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="60dp"
+            tools:layout_editor_absoluteY="57dp">
+
+            <CheckBox
+                android:id="@+id/checkBox25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/intercity"
+                android:textAlignment="center" />
         </LinearLayout>
 
     </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:onClick="goBack"
+        android:text="@string/confirm"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout3" />
 
 </android.support.constraint.ConstraintLayout>
