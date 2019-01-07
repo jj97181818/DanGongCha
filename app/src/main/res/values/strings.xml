@@ -2,6 +2,7 @@
     <string name="app_name">DanGongCha</string>
 
     <string name="select_route">請選擇路線</string>
+    <string name="select_city">請選擇要查詢的縣市範圍</string>
 
     <string name="number_0">0</string>
     <string name="number_1">1</string>
@@ -20,13 +21,35 @@
     <string name="brown">棕</string>
     <string name="orange">橘</string>
     <string name="yellow">黃</string>
-    
+
     <string name="confirm">確定</string>
     <string name="delete">刪除</string>
-    
+
     <string name="city">縣市</string>
-    
+
     <string name="trunk">幹線</string>
 
+    <string name="Keelung">基隆市</string>
+    <string name="NewTaipei">新北市</string>
+    <string name="Taipei">台北市</string>
+    <string name="YilanCounty">宜蘭縣</string>
+    <string name="Taoyuan">桃園市</string>
+    <string name="Hsinchu">新竹市</string>
+    <string name="HsinchuCounty">新竹縣</string>
+    <string name="MiaoliCounty">苗栗縣</string>
+    <string name="Taichung">台中市</string>
+    <string name="ChanghuaCounty">彰化縣</string>
+    <string name="NantouCounty">南投縣</string>
+    <string name="YunlinCounty">雲林縣</string>
+    <string name="Chiayi">嘉義市</string>
+    <string name="ChiayiCounty">嘉義縣</string>
+    <string name="Tainan">台南市</string>
+    <string name="Kaohsiung">高雄市</string>
+    <string name="PingtungCounty">屏東縣</string>
+    <string name="TaitungCounty">台東縣</string>
+    <string name="HualienCounty">花蓮縣</string>
+    <string name="PenghuCounty">澎湖縣</string>
+    <string name="KinmenCounty">金門縣</string>
+    <string name="LienchiangCounty">連江縣</string>
 
 </resources>
