@@ -91,6 +91,7 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    //到 CityActivity
     public void gotoCityActivity() {
         Intent it = new Intent(this, CityActivity.class);
         startActivity(it);
