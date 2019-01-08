@@ -85,7 +85,7 @@ public class CityActivity extends AppCompatActivity {
             CheckBox chk = findViewById(i);
             String city = chk.getText().toString();
 
-            //在已儲存城市資料表中，此城市的狀態
+            //在資料表中，查詢此城市的狀態
             Cursor c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = \"" + city + "\"", null);
             c.moveToFirst();
 
