@@ -6,13 +6,27 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
+import android.widget.ListView;
+
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 
 public class CityActivity extends AppCompatActivity {
     static final String db_name = "bus";
     static final String tb_name1 = "route";
     static final String tb_name2 = "city";
+    ListView listview;
+    ArrayList<String> routeNameList = new ArrayList<String>();
 
     String[] cities =  {
             "基隆市", "新北市", "台北市", "宜蘭縣", "桃園市", "新竹市", "新竹縣", "苗栗縣",
@@ -38,7 +52,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateData();
-                goBack();
+                //goBack();
             }
         };
         findViewById(R.id.button).setOnClickListener(onClickListener);
@@ -97,6 +111,8 @@ public class CityActivity extends AppCompatActivity {
                     updateCityStatus(city, 1);
 
                     //TODO: 新增該城市的路線
+                    callInfoAPI(city);
+                    goBack();
                 }
             }
             //如果沒被按下
@@ -143,4 +159,53 @@ public class CityActivity extends AppCompatActivity {
     public void goBack() {
         finish();
     }
+
+
+    public void callInfoAPI(String city) {
+        //步骤4:创建Retrofit对象
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://bus.ntut.com.tw") // 设置 网络请求 Url
+                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .build();
+
+        // 步骤5:创建 网络请求接口 的实例
+        GetRequestInterface request = retrofit.create(GetRequestInterface.class);
+
+        // TODO: 縣市名稱中英文轉換
+        // 对 发送请求 进行封装
+        Call<Infos> call = request.getCall("Taichung");
+
+        // 步骤6:发送网络请求(异步)
+        call.enqueue(new Callback<Infos>() {
+            //请求成功时回调
+            @Override
+            public void onResponse(Call<Infos> call, Response<Infos> response) {
+
+                Log.d("ohmy","waaa");
+
+                try {
+                    for (Infos.Route route : response.body().routes) {
+                    Log.d("ohmy", route.routeUID);
+                    Log.d("ohmy", route.routeName);
+                    Log.d("ohmy", route.city);
+                    Log.d("ohmy", route.departureStopName);
+                    Log.d("ohmy", route.destinationStopName);
+                    }
+                }
+                catch (Exception e) {
+                    Log.d("ohmy", "onResponse: ");
+                    Log.d("ohmy", String.valueOf(e));
+                }
+
+
+                // 步骤7：处理返回的数据结果 response.body().show();
+            } //请求失败时回调
+
+            @Override
+            public void onFailure(Call<Infos> call, Throwable throwable) {
+                Log.d("ohmy", String.valueOf(throwable));
+            }
+        });
+    }
+
 }
