@@ -276,7 +276,7 @@ public class CityActivity extends AppCompatActivity {
     public List<Infos.Route> callInfoAPI(String city) {
         // 建 Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://bus.ntut.com.tw") // 設置網路請求
+                .baseUrl("https://bus.ntut.com.tw") // 設置網路請求
                 .addConverterFactory(GsonConverterFactory.create()) //設置使用 GSON 解析
                 .build();
 
