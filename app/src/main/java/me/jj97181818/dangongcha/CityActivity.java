@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
@@ -61,7 +60,7 @@ public class CityActivity extends AppCompatActivity {
         db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
 
         //如果不存在路線資料表，就建立一個
-        String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), route VARCHAR(40))";
+        String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
 
         //如果不存在已儲存城市資料表，就建立一個
         String createTable2 = "CREATE TABLE IF NOT EXISTS " + tb_name2 + "(city VARCHAR(20), status int)";
@@ -113,7 +112,7 @@ public class CityActivity extends AppCompatActivity {
                     //中文縣市轉英文縣市
                     city = ch2en(city);
 
-                    //TODO: 新增該城市的路線
+                    //call API
                     callInfoAPI(city);
                 }
             }
@@ -284,6 +283,9 @@ public class CityActivity extends AppCompatActivity {
                     Log.d("ohmy", route.city);
                     Log.d("ohmy", route.departureStopName);
                     Log.d("ohmy", route.destinationStopName);
+
+                    //新增勾選城市的基本路線
+                    addCityRoute(route.city, route.routeName);
                 }
             }
 
@@ -293,6 +295,17 @@ public class CityActivity extends AppCompatActivity {
                 Log.d("ohmy", String.valueOf(throwable));
             }
         });
+    }
+
+    //增加已選擇的城市基本路線資料
+    private void addCityRoute(String city, String routeName) {
+        //宣告列
+        ContentValues cv = new ContentValues();
+        cv.put("city", city);
+        cv.put("routeName", routeName);
+
+        //插入列
+        db.insert(tb_name1, null, cv);
     }
 
 }
