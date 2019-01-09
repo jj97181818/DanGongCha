@@ -6,16 +6,16 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -46,6 +46,10 @@ public class CityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_city);
+
+        //簡單暴力解決 android.os.NetworkOnMainThreadException
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -113,7 +117,16 @@ public class CityActivity extends AppCompatActivity {
                     city = ch2en(city);
 
                     //call API
-                    callInfoAPI(city);
+                    for (Infos.Route route : callInfoAPI(city)) {
+//                        Log.d("ohmy", route.routeUID);
+//                        Log.d("ohmy", route.routeName);
+//                        Log.d("ohmy", route.city);
+//                        Log.d("ohmy", route.departureStopName);
+//                        Log.d("ohmy", route.destinationStopName);
+
+                        //新增勾選城市的基本路線
+                        addCityRoute(route.city, route.routeName);
+                    }
                 }
             }
             //如果沒被按下
@@ -260,7 +273,7 @@ public class CityActivity extends AppCompatActivity {
         return city;
     }
 
-    public void callInfoAPI(String city) {
+    public List<Infos.Route> callInfoAPI(String city) {
         // 建 Retrofit
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://bus.ntut.com.tw") // 設置網路請求
@@ -273,29 +286,14 @@ public class CityActivity extends AppCompatActivity {
         // 對發送請求進行封裝
         Call<Infos> call = request.getCall(city);
 
-        // 發送網路請求（異步）
-        call.enqueue(new Callback<Infos>() {
-            //成功
-            @Override
-            public void onResponse(Call<Infos> call, Response<Infos> response) {
-                for (Infos.Route route : response.body().routes) {
-//                    Log.d("ohmy", route.routeUID);
-//                    Log.d("ohmy", route.routeName);
-//                    Log.d("ohmy", route.city);
-//                    Log.d("ohmy", route.departureStopName);
-//                    Log.d("ohmy", route.destinationStopName);
-
-                    //新增勾選城市的基本路線
-                    addCityRoute(route.city, route.routeName);
-                }
-            }
-
-            //失敗
-            @Override
-            public void onFailure(Call<Infos> call, Throwable throwable) {
-                Log.d("ohmy", String.valueOf(throwable));
-            }
-        });
+        // 發送網路請求（同步）
+        try {
+            return call.execute().body().routes;
+        }
+        catch (Exception e) {
+            Log.d("ohmy", String.valueOf(e));
+            return null;
+        }
     }
 
     //增加已選擇的城市基本路線資料
