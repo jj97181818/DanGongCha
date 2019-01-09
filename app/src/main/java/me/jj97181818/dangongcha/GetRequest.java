@@ -6,5 +6,5 @@ import retrofit2.http.Path;
 
 public interface GetRequest {
     @GET("/v1/info/{city}?ver=3")
-    Call<Infos> getCall (@Path("city") String city);
+    Call<Infos> getInfo(@Path("city") String city);
 }
