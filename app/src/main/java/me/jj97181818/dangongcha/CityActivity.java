@@ -122,7 +122,8 @@ public class CityActivity extends AppCompatActivity {
                     //將其狀態設為 0
                     updateCityStatus(city, 0);
 
-                    //TODO: 刪除該城市的路線
+                    //刪除該城市的路線
+                    deleteCityRoute(city);
                 }
             }
         }
@@ -306,6 +307,12 @@ public class CityActivity extends AppCompatActivity {
 
         //插入列
         db.insert(tb_name1, null, cv);
+    }
+
+    //刪除已選擇的城市基本路線資料
+    private void deleteCityRoute(String city) {
+        //刪除很多列
+        db.delete(tb_name1, "city = ?", new String[] {city});
     }
 
 }
