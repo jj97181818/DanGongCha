@@ -52,7 +52,7 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 updateData();
-                //goBack();
+                goBack();
             }
         };
         findViewById(R.id.button).setOnClickListener(onClickListener);
@@ -110,9 +110,11 @@ public class CityActivity extends AppCompatActivity {
                     //將其狀態設為 1
                     updateCityStatus(city, 1);
 
+                    //中文縣市轉英文縣市
+                    city = ch2en(city);
+
                     //TODO: 新增該城市的路線
                     callInfoAPI(city);
-                    goBack();
                 }
             }
             //如果沒被按下
@@ -160,47 +162,132 @@ public class CityActivity extends AppCompatActivity {
         finish();
     }
 
+    //縣市名稱中英文轉換
+    public String ch2en(String city) {
+        switch (city) {
+            case "基隆市":
+                city = "Keelung";
+                break;
+
+            case "新北市":
+                city = "NewTaipei";
+                break;
+
+            case "台北市":
+                city = "Taipei";
+                break;
+
+            case "宜蘭縣":
+                city = "YilanCounty";
+                break;
+
+            case "桃園市":
+                city = "Taoyuan";
+                break;
+
+            case "新竹市":
+                city = "Hsinchu";
+                break;
+
+            case "新竹縣":
+                city = "HsinchuCounty";
+                break;
+
+            case "苗栗縣":
+                city = "MiaoliCounty";
+                break;
+
+            case "台中市":
+                city = "Taichung";
+                break;
+
+            case "彰化縣":
+                city = "ChanghuaCounty";
+                break;
+
+            case "南投縣":
+                city = "NantouCounty";
+                break;
+
+            case "雲林縣":
+                city = "YunlinCounty";
+                break;
+
+            case "嘉義市":
+                city = "Chiayi";
+                break;
+
+            case "嘉義縣":
+                city = "ChiayiCounty";
+                break;
+
+            case "台南市":
+                city = "Tainan";
+                break;
+
+            case "高雄市":
+                city = "Kaohsiung";
+                break;
+
+            case "屏東縣":
+                city = "PingtungCounty";
+                break;
+
+            case "台東縣":
+                city = "TaitungCounty";
+                break;
+
+            case "花蓮縣":
+                city = "HualienCounty";
+                break;
+
+            case "澎湖縣":
+                city = "PenghuCounty";
+                break;
+
+            case "金門縣":
+                city = "KinmenCounty";
+                break;
+
+            case "連江縣":
+                city = "LienchiangCounty";
+                break;
+
+            case "公路客運":
+                city = "intercity";
+                break;
+        }
+        return city;
+    }
 
     public void callInfoAPI(String city) {
-        //步骤4:创建Retrofit对象
+        // 建 Retrofit
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://bus.ntut.com.tw") // 设置 网络请求 Url
-                .addConverterFactory(GsonConverterFactory.create()) //设置使用Gson解析(记得加入依赖)
+                .baseUrl("http://bus.ntut.com.tw") // 設置網路請求
+                .addConverterFactory(GsonConverterFactory.create()) //設置使用 GSON 解析
                 .build();
 
-        // 步骤5:创建 网络请求接口 的实例
+        // 建網路請求接口實例
         GetRequestInterface request = retrofit.create(GetRequestInterface.class);
 
-        // TODO: 縣市名稱中英文轉換
-        // 对 发送请求 进行封装
-        Call<Infos> call = request.getCall("Taichung");
+        // 對發送請求進行封裝
+        Call<Infos> call = request.getCall(city);
 
-        // 步骤6:发送网络请求(异步)
+        // 發送網路請求（異步）
         call.enqueue(new Callback<Infos>() {
-            //请求成功时回调
+            //成功
             @Override
             public void onResponse(Call<Infos> call, Response<Infos> response) {
-
-                Log.d("ohmy","waaa");
-
-                try {
-                    for (Infos.Route route : response.body().routes) {
+                for (Infos.Route route : response.body().routes) {
                     Log.d("ohmy", route.routeUID);
                     Log.d("ohmy", route.routeName);
                     Log.d("ohmy", route.city);
                     Log.d("ohmy", route.departureStopName);
                     Log.d("ohmy", route.destinationStopName);
-                    }
                 }
-                catch (Exception e) {
-                    Log.d("ohmy", "onResponse: ");
-                    Log.d("ohmy", String.valueOf(e));
-                }
+            }
 
-
-                // 步骤7：处理返回的数据结果 response.body().show();
-            } //请求失败时回调
-
+            //失敗
             @Override
             public void onFailure(Call<Infos> call, Throwable throwable) {
                 Log.d("ohmy", String.valueOf(throwable));
