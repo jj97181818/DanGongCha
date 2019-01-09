@@ -278,11 +278,11 @@ public class CityActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<Infos> call, Response<Infos> response) {
                 for (Infos.Route route : response.body().routes) {
-                    Log.d("ohmy", route.routeUID);
-                    Log.d("ohmy", route.routeName);
-                    Log.d("ohmy", route.city);
-                    Log.d("ohmy", route.departureStopName);
-                    Log.d("ohmy", route.destinationStopName);
+//                    Log.d("ohmy", route.routeUID);
+//                    Log.d("ohmy", route.routeName);
+//                    Log.d("ohmy", route.city);
+//                    Log.d("ohmy", route.departureStopName);
+//                    Log.d("ohmy", route.destinationStopName);
 
                     //新增勾選城市的基本路線
                     addCityRoute(route.city, route.routeName);
