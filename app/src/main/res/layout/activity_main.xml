@@ -175,11 +175,11 @@
                 android:text="@string/delete" />
 
             <Button
-                android:id="@+id/btn_confirm"
+                android:id="@+id/btn_F"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="@string/confirm" />
+                android:text="@string/F" />
 
             <Button
                 android:id="@+id/btn_0"

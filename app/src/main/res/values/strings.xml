@@ -22,12 +22,14 @@
     <string name="orange">橘</string>
     <string name="yellow">黃</string>
 
+
     <string name="confirm">確定</string>
     <string name="delete">刪除</string>
 
     <string name="city">縣市</string>
 
     <string name="trunk">幹線</string>
+    <string name="F">F</string>
 
     <string name="Keelung">基隆市</string>
     <string name="NewTaipei">新北市</string>
