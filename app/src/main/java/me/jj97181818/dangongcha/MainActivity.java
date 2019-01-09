@@ -73,6 +73,24 @@ public class MainActivity extends AppCompatActivity {
                 if(v.getId() == R.id.btn_trunk) {
 
                 }
+
+                if (getTitle().toString() != getString(R.string.app_name)) {
+                    //開啟或建立資料庫
+                    db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
+
+                    //如果不存在路線資料表，就建立一個
+                    String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
+
+                    //執行 SQL 語法
+                    db.execSQL(createTable1);
+
+                    Cursor c = db.rawQuery("SELECT routeName FROM " + tb_name1 + " WHERE routeName LIKE \"%" + getTitle().toString() + "%\"", null);
+
+                    //如果有搜尋到資料
+                    if (c.moveToFirst()) {
+                        txv.setText(c.getString(0));
+                    }
+                }
             }
         };
 

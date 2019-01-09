@@ -21,6 +21,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 
 public class CityActivity extends AppCompatActivity {
+    SQLiteDatabase db;  //資料庫物件
     static final String db_name = "bus";
     static final String tb_name1 = "route";
     static final String tb_name2 = "city";
@@ -40,7 +41,6 @@ public class CityActivity extends AppCompatActivity {
             R.id.chk19, R.id.chk20, R.id.chk21, R.id.chk22, R.id.chk23
     };
 
-    SQLiteDatabase db;  //資料庫物件
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
