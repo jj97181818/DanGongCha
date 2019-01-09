@@ -8,8 +8,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +29,15 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txv = findViewById(R.id.txv);
+
+
+
+        AdapterView.OnItemClickListener onItemClickListener= new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        };
 
         View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
@@ -56,7 +70,10 @@ public class MainActivity extends AppCompatActivity {
 
                 // F 按鈕
                 if(v.getId() == R.id.btn_F) {
-
+                    if (getTitle().toString().equals(""))
+                        setTitle(getTitle().toString() + ((Button) findViewById(v.getId())).getText().toString());
+                    else
+                        setTitle(((Button) findViewById(v.getId())).getText().toString());
                 }
 
                 //刪除按鈕
@@ -94,6 +111,9 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
+        //listener
+        ((ListView) findViewById(R.id.lv)).setOnItemClickListener(onItemClickListener);
+        findViewById(R.id.btn_0).setOnClickListener(onClickListener);
         findViewById(R.id.btn_1).setOnClickListener(onClickListener);
         findViewById(R.id.btn_2).setOnClickListener(onClickListener);
         findViewById(R.id.btn_3).setOnClickListener(onClickListener);
