@@ -113,7 +113,7 @@ public class CityActivity extends AppCompatActivity {
                     //將其狀態設為 1
                     updateCityStatus(city, 1);
 
-                    //中文縣市轉英文縣市
+                    //將縣市名稱從中文轉為英文
                     city = ch2en(city);
 
                     //call API
@@ -288,9 +288,11 @@ public class CityActivity extends AppCompatActivity {
 
         // 發送網路請求（同步）
         try {
+            //成功
             return call.execute().body().routes;
         }
         catch (Exception e) {
+            //失敗
             Log.d("ohmy", String.valueOf(e));
             return null;
         }
