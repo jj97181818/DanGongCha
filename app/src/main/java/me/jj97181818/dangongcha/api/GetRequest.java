@@ -16,4 +16,8 @@ public interface GetRequest {
 
     @GET("/v1/real/{city}/{route}?ver=3")
     Call<Reals> getReal(@Path("city") String city, @Path("route") String route);
+
+    //call 髒髒的 API
+    @GET("/v1/stop/{city}/{route}?ver=1")
+    Call<Reals> getReal(@Path("city") String city, @Path("route") String route);
 }
