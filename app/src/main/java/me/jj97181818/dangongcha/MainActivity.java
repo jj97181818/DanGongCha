@@ -68,12 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 //顏色按鈕
-                for (int j:color) {
-                    if(v.getId() == j) {
-                        if (getTitle().toString().equals(""))
-                            setTitle(getTitle().toString() + ((Button) findViewById(v.getId())).getText().toString());
-                        else
-                            setTitle(((Button) findViewById(v.getId())).getText().toString());
+                for (int i:color) {
+                    if(v.getId() == i) {
+                        Button button = findViewById(v.getId());
+                        setTitle(button.getText().toString());
                     }
                 }
 
