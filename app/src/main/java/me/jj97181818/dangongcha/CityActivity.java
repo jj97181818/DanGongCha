@@ -62,14 +62,10 @@ public class CityActivity extends AppCompatActivity {
         db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
 
         //如果不存在路線資料表，就建立一個
-        String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))");
 
         //如果不存在已儲存城市資料表，就建立一個
-        String createTable2 = "CREATE TABLE IF NOT EXISTS " + tb_name2 + "(city VARCHAR(20), status int)";
-
-        //執行 SQL 語法
-        db.execSQL(createTable1);
-        db.execSQL(createTable2);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name2 + "(city VARCHAR(20), status int)");
 
         Cursor c = db.rawQuery("SELECT * FROM " + tb_name2 , null);
         //如果資料表中沒有儲存過任何資料，就增加預設資料

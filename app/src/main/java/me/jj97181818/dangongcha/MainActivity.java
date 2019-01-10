@@ -161,11 +161,7 @@ public class MainActivity extends AppCompatActivity {
         db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
 
         //如果不存在路線資料表，就建立一個
-        String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
-
-
-        //執行 SQL 語法
-        db.execSQL(createTable1);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))");
 
         Cursor c = db.rawQuery("SELECT * FROM " + tb_name1 , null);
         
