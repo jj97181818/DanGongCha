@@ -16,6 +16,9 @@ import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+
+import me.jj97181818.dangongcha.utils.CityName;
+
 import org.w3c.dom.Text;
 
 import java.util.ArrayList;
@@ -103,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
                     //如果有搜尋到資料
                     if (c.moveToFirst()) {
                         do {
-                            arrayAdapter.add("［" + c.getString(0) + "］" + c.getString(1));
+                            arrayAdapter.add("［" + CityName.toChinese(c.getString(0)) + "］" + c.getString(1));
                         } while (c.moveToNext());
                     }
                 }
