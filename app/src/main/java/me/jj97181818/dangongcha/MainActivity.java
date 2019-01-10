@@ -112,7 +112,9 @@ public class MainActivity extends AppCompatActivity {
                     //執行 SQL 語法
                     db.execSQL(createTable1);
 
-                    Cursor c = db.rawQuery("SELECT city, routeName FROM " + tb_name1 + " WHERE routeName LIKE \"%" + getTitle().toString() + "%\"", null);
+                    //搜尋公車路線
+                    String routeName = getTitle().toString();
+                    Cursor c = db.rawQuery("SELECT city, routeName FROM " + tb_name1 + " WHERE routeName LIKE ?", new String[] {"%" + routeName + "%"});
 
                     arrayAdapter.clear();
 

@@ -77,7 +77,7 @@ public class CityActivity extends AppCompatActivity {
             CheckBox chk = findViewById(i);
             String city = chk.getText().toString();
 
-            c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = \"" + city + "\"", null);
+            c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = ?", new String[] {city});
             c.moveToFirst();
 
             if (c.getInt(0) == 1) {
@@ -97,7 +97,7 @@ public class CityActivity extends AppCompatActivity {
             String city = chk.getText().toString();
 
             //在資料表中，查詢此城市的狀態
-            Cursor c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = \"" + city + "\"", null);
+            Cursor c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = ?", new String[] {city});
             c.moveToFirst();
 
             //如果被按下
@@ -161,7 +161,7 @@ public class CityActivity extends AppCompatActivity {
         cv.put("status", status);
 
         //編輯列
-        db.update(tb_name2, cv, "city = ?", new String[]{city});
+        db.update(tb_name2, cv, "city = ?", new String[] {city});
     }
 
     //回到主畫面
