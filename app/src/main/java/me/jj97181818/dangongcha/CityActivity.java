@@ -15,6 +15,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.jj97181818.dangongcha.api.GetRequest;
+import me.jj97181818.dangongcha.api.Infos;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
