@@ -143,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
         //如果資料表中沒有儲存過任何資料，就跳到 CityActivity 先行勾選
         if (c.getCount() == 0) {
             gotoCityActivity();
+            setTitle(getString(R.string.app_name));
         }
 
     }
