@@ -55,10 +55,4 @@
     <string name="LienchiangCounty">連江縣</string>
     <string name="intercity">公路客運</string>
 
-    <string-array name="menu">
-        <item>a</item>
-        <item>b</item>
-        <item>c</item>
-        <item>d</item>
-    </string-array>
 </resources>
