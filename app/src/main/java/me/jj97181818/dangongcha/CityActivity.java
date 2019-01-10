@@ -100,11 +100,8 @@ public class CityActivity extends AppCompatActivity {
             if (chk.isChecked()) {
 
                 if (c.getInt(0) == 0) {   //資料表中，此城市上次沒被勾選
-                    //將縣市名稱從中文轉為英文
-                    city = CityName.toEnglish(city);
-
                     //call API
-                    for (Infos.Route route : callInfoAPI(city)) {
+                    for (Infos.Route route : callInfoAPI(CityName.toEnglish(city))) {
 //                        Log.d("ohmy", route.routeUID);
 //                        Log.d("ohmy", route.routeName);
 //                        Log.d("ohmy", route.city);
