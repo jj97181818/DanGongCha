@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity {
         arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
         ((ListView) findViewById(R.id.lv)).setAdapter(arrayAdapter);
 
+        //開啟或建立資料庫
+        db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
+
+        //如果不存在路線資料表，就建立一個
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))");
 
         AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
             @Override
@@ -89,15 +94,6 @@ public class MainActivity extends AppCompatActivity {
 
                 // 每多輸入一個字
                 if (getTitle().toString() != getString(R.string.app_name)) {
-                    //開啟或建立資料庫
-                    db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
-
-                    //如果不存在路線資料表，就建立一個
-                    String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
-
-                    //執行 SQL 語法
-                    db.execSQL(createTable1);
-
                     //搜尋公車路線
                     String routeName = getTitle().toString();
                     Cursor c = db.rawQuery("SELECT city, routeName FROM " + tb_name1 + " WHERE routeName LIKE ?", new String[] {"%" + routeName + "%"});
@@ -145,14 +141,7 @@ public class MainActivity extends AppCompatActivity {
     {
         super.onResume();
 
-        //開啟或建立資料庫
-        db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
-
-        //如果不存在路線資料表，就建立一個
-        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))");
-
         Cursor c = db.rawQuery("SELECT * FROM " + tb_name1 , null);
-        
         //如果資料表中沒有儲存過任何資料，就跳到 CityActivity 先行勾選
         if (c.getCount() == 0) {
             gotoCityActivity();
