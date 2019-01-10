@@ -25,8 +25,6 @@ public class CityActivity extends AppCompatActivity {
     static final String db_name = "bus";
     static final String tb_name1 = "route";
     static final String tb_name2 = "city";
-    ListView listview;
-    ArrayList<String> routeNameList = new ArrayList<String>();
 
     String[] cities =  {
             "基隆市", "新北市", "台北市", "宜蘭縣", "桃園市", "新竹市", "新竹縣", "苗栗縣",
