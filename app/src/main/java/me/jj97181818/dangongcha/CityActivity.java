@@ -10,9 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
