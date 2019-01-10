@@ -63,7 +63,8 @@ public class MainActivity extends AppCompatActivity {
                 //數字按鈕
                 for (int i:number) {
                     if(v.getId() == i) {
-                       setTitle(getTitle().toString() + ((Button) findViewById(v.getId())).getText().toString());
+                        Button button = findViewById(v.getId());
+                        setTitle(getTitle().toString() + button.getText().toString());
                     }
                 }
 
