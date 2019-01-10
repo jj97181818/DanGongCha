@@ -281,10 +281,10 @@ public class CityActivity extends AppCompatActivity {
                 .build();
 
         // 建網路請求接口實例
-        GetRequestInterface request = retrofit.create(GetRequestInterface.class);
+        GetRequest request = retrofit.create(GetRequest.class);
 
         // 對發送請求進行封裝
-        Call<Infos> call = request.getCall(city);
+        Call<Infos> call = request.getInfo(city);
 
         // 發送網路請求（同步）
         try {
