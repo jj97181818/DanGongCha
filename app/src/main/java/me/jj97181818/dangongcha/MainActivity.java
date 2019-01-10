@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
                 int[] color = {R.id.btn_red, R.id.btn_blue, R.id.btn_green, R.id.btn_brown, R.id.btn_orange, R.id.btn_yellow, R.id.btn_trunk, R.id.btn_F};
 
                 //蓋掉原本的標題名
-                if (getTitle().toString().equals("DanGongCha")) {
+                if (getTitle().toString().equals(getString(R.string.app_name))) {
                     setTitle("");
                 }
 
@@ -83,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
 
                 //刪除按鈕
                 if(v.getId() == R.id.btn_delete) {
-                    setTitle("DanGongCha");
+                    setTitle(getString(R.string.app_name));
                 }
 
                 //縣市按鈕
                 if(v.getId() == R.id.btn_city) {
                     gotoCityActivity();
-                    setTitle("DanGongCha");
+                    setTitle(getString(R.string.app_name));
                 }
 
                 // 每多輸入一個字
