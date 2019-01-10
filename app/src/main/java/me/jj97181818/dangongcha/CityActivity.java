@@ -127,7 +127,7 @@ public class CityActivity extends AppCompatActivity {
             else {
                 if (c.getInt(0) == 1) {   //資料表中，此城市上次被勾選
                     //刪除該城市的路線
-                    deleteCityRoute(city);
+                    deleteCityAllRoute(city);
 
                     //將其狀態設為 0
                     updateCityStatus(city, 0);
@@ -304,7 +304,7 @@ public class CityActivity extends AppCompatActivity {
     }
 
     //刪除已選擇的城市基本路線資料
-    private void deleteCityRoute(String city) {
+    private void deleteCityAllRoute(String city) {
         //刪除很多列
         db.delete(tb_name1, "city = ?", new String[] {city});
     }
