@@ -15,6 +15,7 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.List;
 
+import me.jj97181818.dangongcha.utils.CityName;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -27,12 +28,6 @@ public class CityActivity extends AppCompatActivity {
     static final String tb_name2 = "city";
     ListView listview;
     ArrayList<String> routeNameList = new ArrayList<String>();
-
-    String[] cities =  {
-            "基隆市", "新北市", "台北市", "宜蘭縣", "桃園市", "新竹市", "新竹縣", "苗栗縣",
-            "台中市", "彰化縣", "南投縣", "雲林縣", "嘉義市", "嘉義縣", "台南市", "高雄市",
-            "屏東縣", "台東縣", "花蓮縣", "澎湖縣", "金門縣", "連江縣", "公路客運"
-    };
 
     int[] chkId = {
             R.id.chk1, R.id.chk2, R.id.chk3, R.id.chk4, R.id.chk5, R.id.chk6,
@@ -114,7 +109,7 @@ public class CityActivity extends AppCompatActivity {
                     updateCityStatus(city, 1);
 
                     //將縣市名稱從中文轉為英文
-                    city = ch2en(city);
+                    city = CityName.toEnglish(city);
 
                     //call API
                     for (Infos.Route route : callInfoAPI(city)) {
@@ -144,7 +139,7 @@ public class CityActivity extends AppCompatActivity {
 
     //初始化資料表
     private void initCityTable() {
-        for (String city : cities) {
+        for (String city : CityName.CHINESE) {
             addCityStatus(city, 0);
         }
     }
@@ -173,104 +168,6 @@ public class CityActivity extends AppCompatActivity {
     //回到主畫面
     public void goBack() {
         finish();
-    }
-
-    //縣市名稱中英文轉換
-    public String ch2en(String city) {
-        switch (city) {
-            case "基隆市":
-                city = "Keelung";
-                break;
-
-            case "新北市":
-                city = "NewTaipei";
-                break;
-
-            case "台北市":
-                city = "Taipei";
-                break;
-
-            case "宜蘭縣":
-                city = "YilanCounty";
-                break;
-
-            case "桃園市":
-                city = "Taoyuan";
-                break;
-
-            case "新竹市":
-                city = "Hsinchu";
-                break;
-
-            case "新竹縣":
-                city = "HsinchuCounty";
-                break;
-
-            case "苗栗縣":
-                city = "MiaoliCounty";
-                break;
-
-            case "台中市":
-                city = "Taichung";
-                break;
-
-            case "彰化縣":
-                city = "ChanghuaCounty";
-                break;
-
-            case "南投縣":
-                city = "NantouCounty";
-                break;
-
-            case "雲林縣":
-                city = "YunlinCounty";
-                break;
-
-            case "嘉義市":
-                city = "Chiayi";
-                break;
-
-            case "嘉義縣":
-                city = "ChiayiCounty";
-                break;
-
-            case "台南市":
-                city = "Tainan";
-                break;
-
-            case "高雄市":
-                city = "Kaohsiung";
-                break;
-
-            case "屏東縣":
-                city = "PingtungCounty";
-                break;
-
-            case "台東縣":
-                city = "TaitungCounty";
-                break;
-
-            case "花蓮縣":
-                city = "HualienCounty";
-                break;
-
-            case "澎湖縣":
-                city = "PenghuCounty";
-                break;
-
-            case "金門縣":
-                city = "KinmenCounty";
-                break;
-
-            case "連江縣":
-                city = "LienchiangCounty";
-                break;
-
-            case "公路客運":
-                city = "intercity";
-                break;
-        }
-        return city;
     }
 
     public List<Infos.Route> callInfoAPI(String city) {
