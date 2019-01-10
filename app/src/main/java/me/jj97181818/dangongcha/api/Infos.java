@@ -1,7 +1,6 @@
 package me.jj97181818.dangongcha.api;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Infos implements Serializable {
