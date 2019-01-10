@@ -29,7 +29,6 @@ public class MainActivity extends AppCompatActivity {
     static final String tb_name1 = "route";
 
     ArrayAdapter arrayAdapter;
-    String[] routes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
