@@ -10,4 +10,7 @@ public interface GetRequest {
 
     @GET("/v1/time/{city}/{route}?ver=3")
     Call<Times> getTime(@Path("city") String city, @Path("route") String route);
+
+    @GET("/v1/real/{city}/{route}?ver=3")
+    Call<Reals> getReal(@Path("city") String city, @Path("route") String route);
 }
