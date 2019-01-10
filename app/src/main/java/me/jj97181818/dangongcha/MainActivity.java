@@ -84,6 +84,7 @@ public class MainActivity extends AppCompatActivity {
                 //縣市按鈕
                 if(v.getId() == R.id.btn_city) {
                     gotoCityActivity();
+                    setTitle("DanGongCha");
                 }
 
                 // 每多輸入一個字
