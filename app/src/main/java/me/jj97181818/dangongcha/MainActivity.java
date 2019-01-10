@@ -111,7 +111,6 @@ public class MainActivity extends AppCompatActivity {
         };
 
         //listener
-
         ((ListView) findViewById(R.id.lv)).setOnItemClickListener(onItemClickListener);
         findViewById(R.id.btn_0).setOnClickListener(onClickListener);
         findViewById(R.id.btn_1).setOnClickListener(onClickListener);
@@ -133,10 +132,9 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn_delete).setOnClickListener(onClickListener);
         findViewById(R.id.btn_city).setOnClickListener(onClickListener);
         findViewById(R.id.btn_trunk).setOnClickListener(onClickListener);
-
     }
 
-    // 回到 MainActivity 時，就會執行
+    // 每次回到 MainActivity 時就會執行
     public void onResume()
     {
         super.onResume();
