@@ -10,9 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
-import android.widget.ListView;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import me.jj97181818.dangongcha.utils.CityName;
@@ -29,8 +27,6 @@ public class CityActivity extends AppCompatActivity {
     static final String db_name = "bus";
     static final String tb_name1 = "route";
     static final String tb_name2 = "city";
-    ListView listview;
-    ArrayList<String> routeNameList = new ArrayList<String>();
 
     int[] chkId = {
             R.id.chk1, R.id.chk2, R.id.chk3, R.id.chk4, R.id.chk5, R.id.chk6,
@@ -62,14 +58,10 @@ public class CityActivity extends AppCompatActivity {
         db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
 
         //如果不存在路線資料表，就建立一個
-        String createTable1 = "CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))";
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name1 + "(city VARCHAR(20), routeName VARCHAR(40))");
 
         //如果不存在已儲存城市資料表，就建立一個
-        String createTable2 = "CREATE TABLE IF NOT EXISTS " + tb_name2 + "(city VARCHAR(20), status int)";
-
-        //執行 SQL 語法
-        db.execSQL(createTable1);
-        db.execSQL(createTable2);
+        db.execSQL("CREATE TABLE IF NOT EXISTS " + tb_name2 + "(city VARCHAR(20), status int)");
 
         Cursor c = db.rawQuery("SELECT * FROM " + tb_name2 , null);
         //如果資料表中沒有儲存過任何資料，就增加預設資料
@@ -81,7 +73,7 @@ public class CityActivity extends AppCompatActivity {
             CheckBox chk = findViewById(i);
             String city = chk.getText().toString();
 
-            c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = \"" + city + "\"", null);
+            c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = ?", new String[] {city});
             c.moveToFirst();
 
             if (c.getInt(0) == 1) {
@@ -101,16 +93,13 @@ public class CityActivity extends AppCompatActivity {
             String city = chk.getText().toString();
 
             //在資料表中，查詢此城市的狀態
-            Cursor c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = \"" + city + "\"", null);
+            Cursor c = db.rawQuery("SELECT status FROM " + tb_name2 + " WHERE city = ?", new String[] {city});
             c.moveToFirst();
 
             //如果被按下
             if (chk.isChecked()) {
 
                 if (c.getInt(0) == 0) {   //資料表中，此城市上次沒被勾選
-                    //將其狀態設為 1
-                    updateCityStatus(city, 1);
-
                     //將縣市名稱從中文轉為英文
                     city = CityName.toEnglish(city);
 
@@ -125,16 +114,19 @@ public class CityActivity extends AppCompatActivity {
                         //新增勾選城市的基本路線
                         addCityRoute(route.city, route.routeName);
                     }
+
+                    //將其狀態設為 1
+                    updateCityStatus(city, 1);
                 }
             }
             //如果沒被按下
             else {
                 if (c.getInt(0) == 1) {   //資料表中，此城市上次被勾選
+                    //刪除該城市的路線
+                    deleteCityAllRoute(city);
+
                     //將其狀態設為 0
                     updateCityStatus(city, 0);
-
-                    //刪除該城市的路線
-                    deleteCityRoute(city);
                 }
             }
         }
@@ -165,7 +157,7 @@ public class CityActivity extends AppCompatActivity {
         cv.put("status", status);
 
         //編輯列
-        db.update(tb_name2, cv, "city = ?", new String[]{city});
+        db.update(tb_name2, cv, "city = ?", new String[] {city});
     }
 
     //回到主畫面
@@ -210,7 +202,7 @@ public class CityActivity extends AppCompatActivity {
     }
 
     //刪除已選擇的城市基本路線資料
-    private void deleteCityRoute(String city) {
+    private void deleteCityAllRoute(String city) {
         //刪除很多列
         db.delete(tb_name1, "city = ?", new String[] {city});
     }
