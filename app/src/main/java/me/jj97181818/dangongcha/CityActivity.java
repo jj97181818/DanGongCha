@@ -104,9 +104,6 @@ public class CityActivity extends AppCompatActivity {
             if (chk.isChecked()) {
 
                 if (c.getInt(0) == 0) {   //資料表中，此城市上次沒被勾選
-                    //將其狀態設為 1
-                    updateCityStatus(city, 1);
-
                     //將縣市名稱從中文轉為英文
                     city = ch2en(city);
 
@@ -121,16 +118,19 @@ public class CityActivity extends AppCompatActivity {
                         //新增勾選城市的基本路線
                         addCityRoute(route.city, route.routeName);
                     }
+
+                    //將其狀態設為 1
+                    updateCityStatus(city, 1);
                 }
             }
             //如果沒被按下
             else {
                 if (c.getInt(0) == 1) {   //資料表中，此城市上次被勾選
-                    //將其狀態設為 0
-                    updateCityStatus(city, 0);
-
                     //刪除該城市的路線
                     deleteCityRoute(city);
+
+                    //將其狀態設為 0
+                    updateCityStatus(city, 0);
                 }
             }
         }
