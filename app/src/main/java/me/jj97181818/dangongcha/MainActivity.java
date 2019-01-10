@@ -22,11 +22,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    TextView txv;
     SQLiteDatabase db;  //資料庫物件
     static final String db_name = "bus";
     static final String tb_name1 = "route";
+
+    TextView txv;
 
     ArrayAdapter arrayAdapter;
 
@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         ((ListView) findViewById(R.id.lv)).setAdapter(arrayAdapter);
 
 
-        AdapterView.OnItemClickListener onItemClickListener= new AdapterView.OnItemClickListener() {
+        AdapterView.OnItemClickListener onItemClickListener = new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
@@ -54,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 int[] number = {R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9};
                 int[] color = {R.id.btn_red, R.id.btn_blue, R.id.btn_green, R.id.btn_brown, R.id.btn_orange, R.id.btn_yellow};
-
 
                 //蓋掉原本的標題名
                 if (getTitle().toString().equals("DanGongCha")) {
