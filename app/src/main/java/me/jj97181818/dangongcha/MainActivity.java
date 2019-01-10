@@ -10,11 +10,16 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import org.w3c.dom.Text;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +28,9 @@ public class MainActivity extends AppCompatActivity {
     static final String db_name = "bus";
     static final String tb_name1 = "route";
 
+    ArrayAdapter arrayAdapter;
+    String[] routes;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,6 +38,9 @@ public class MainActivity extends AppCompatActivity {
 
         txv = findViewById(R.id.txv);
 
+        //ListView
+        arrayAdapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1);
+        ((ListView) findViewById(R.id.lv)).setAdapter(arrayAdapter);
 
 
         AdapterView.OnItemClickListener onItemClickListener= new AdapterView.OnItemClickListener() {
@@ -39,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        View.OnClickListener onClickListener = new View.OnClickListener() {
+        final View.OnClickListener onClickListener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 int[] number = {R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9};
@@ -91,6 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
+                // 每多輸入一個字
                 if (getTitle().toString() != getString(R.string.app_name)) {
                     //開啟或建立資料庫
                     db = openOrCreateDatabase(db_name, Context.MODE_PRIVATE, null);
@@ -101,17 +113,22 @@ public class MainActivity extends AppCompatActivity {
                     //執行 SQL 語法
                     db.execSQL(createTable1);
 
-                    Cursor c = db.rawQuery("SELECT routeName FROM " + tb_name1 + " WHERE routeName LIKE \"%" + getTitle().toString() + "%\"", null);
+                    Cursor c = db.rawQuery("SELECT city, routeName FROM " + tb_name1 + " WHERE routeName LIKE \"%" + getTitle().toString() + "%\"", null);
+
+                    arrayAdapter.clear();
 
                     //如果有搜尋到資料
                     if (c.moveToFirst()) {
-                        txv.setText(c.getString(0));
+                        do {
+                            arrayAdapter.add("［" + c.getString(0) + "］" + c.getString(1));
+                        } while (c.moveToNext());
                     }
                 }
             }
         };
 
         //listener
+
         ((ListView) findViewById(R.id.lv)).setOnItemClickListener(onItemClickListener);
         findViewById(R.id.btn_0).setOnClickListener(onClickListener);
         findViewById(R.id.btn_1).setOnClickListener(onClickListener);
