@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 int[] number = {R.id.btn_0, R.id.btn_1, R.id.btn_2, R.id.btn_3, R.id.btn_4, R.id.btn_5, R.id.btn_6, R.id.btn_7, R.id.btn_8, R.id.btn_9};
-                int[] color = {R.id.btn_red, R.id.btn_blue, R.id.btn_green, R.id.btn_brown, R.id.btn_orange, R.id.btn_yellow};
+                int[] color = {R.id.btn_red, R.id.btn_blue, R.id.btn_green, R.id.btn_brown, R.id.btn_orange, R.id.btn_yellow, R.id.btn_trunk, R.id.btn_F};
 
                 //蓋掉原本的標題名
                 if (getTitle().toString().equals("DanGongCha")) {
@@ -68,20 +68,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
 
-                //顏色按鈕
+                //顏色和幹線和 F 按鈕
                 for (int i:color) {
                     if(v.getId() == i) {
                         Button button = findViewById(v.getId());
                         setTitle(button.getText().toString());
                     }
-                }
-
-                // F 按鈕
-                if(v.getId() == R.id.btn_F) {
-                    if (getTitle().toString().equals(""))
-                        setTitle(getTitle().toString() + ((Button) findViewById(v.getId())).getText().toString());
-                    else
-                        setTitle(((Button) findViewById(v.getId())).getText().toString());
                 }
 
                 //刪除按鈕
@@ -92,11 +84,6 @@ public class MainActivity extends AppCompatActivity {
                 //縣市按鈕
                 if(v.getId() == R.id.btn_city) {
                     gotoCityActivity();
-                }
-
-                //幹線按鈕
-                if(v.getId() == R.id.btn_trunk) {
-
                 }
 
                 // 每多輸入一個字
